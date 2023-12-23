@@ -1,0 +1,1188 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable type="timeout" id="JetztZu">JetztZu</variable>
+    <variable id="E_tuhy8Lv6r{/BGZ#lWP">T_TorZu</variable>
+    <variable type="timeout" id="JetztEndlichZu">JetztEndlichZu</variable>
+  </variables>
+  <block type="procedures_defnoreturn" id="BVqKB?b,TA*6Z0^qQ+bd" x="1138" y="-537">
+    <field name="NAME">Garagentor_zufahren</field>
+    <comment pinned="false" h="80" w="160">Beschreibe diese Funktion …</comment>
+    <statement name="STACK">
+      <block type="controls_if" id="jwSoE/+.99j}UJm^tJlA">
+        <value name="IF0">
+          <block type="logic_operation" id="w|THlp@ff*.fO}))7sM-">
+            <field name="OP">OR</field>
+            <value name="A">
+              <block type="get_value" id="uVU.Y61[m;6$66Tq+-zV">
+                <field name="ATTR">val</field>
+                <field name="OID">javascript.0.Garagentor_offen</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="get_value" id="vB5*L$-f7m?}=Ty3|xY(">
+                <field name="ATTR">val</field>
+                <field name="OID">javascript.0.Garagentor_halboffen</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="timeouts_cleartimeout" id="2O$tfbmJ=3u?L77bUBP+">
+            <field name="NAME">JetztZu</field>
+            <next>
+              <block type="timeouts_cleartimeout" id="tt}Y)u[K6*!M.7x?.IuK">
+                <field name="NAME">JetztEndlichZu</field>
+                <next>
+                  <block type="controls_if" id="#vQpt6U)Zw%O9]MLQT?G">
+                    <mutation else="1"></mutation>
+                    <value name="IF0">
+                      <block type="logic_compare" id="=lp-n7ZbG?:j]+idfL?X">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="get_value" id="1;.fSFXA!da6EO4ATa=Z">
+                            <field name="ATTR">val</field>
+                            <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="text" id="6fbpLp~!{57{je|]Z*uk">
+                            <field name="TEXT">Tortrigger</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="control" id="N0!dz,d(WF}*(mn[|#?Q">
+                        <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                        <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                        <field name="WITH_DELAY">FALSE</field>
+                        <value name="VALUE">
+                          <block type="text" id="4LgNA78{b~FC|og(o(yl">
+                            <field name="TEXT">Tortrigger2</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <statement name="ELSE">
+                      <block type="control" id="w1P;68??wOjOn6EiMi)x">
+                        <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                        <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                        <field name="WITH_DELAY">FALSE</field>
+                        <value name="VALUE">
+                          <block type="text" id="B^hU4q3S=y.B)gA33JY}">
+                            <field name="TEXT">Tortrigger</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="timeouts_settimeout_variable" id="dJ+law9~E0ABSE4-7Pc0">
+                        <field name="NAME">JetztZu</field>
+                        <value name="DELAY_MS">
+                          <shadow type="math_number" id=";N0(iuj7N@m6NUS8T%X(">
+                            <field name="NUM">1000</field>
+                          </shadow>
+                          <block type="variables_get" id="IJYx+Gz~epu3CN]$_Q;5">
+                            <field name="VAR" id="E_tuhy8Lv6r{/BGZ#lWP">T_TorZu</field>
+                          </block>
+                        </value>
+                        <statement name="STATEMENT">
+                          <block type="controls_if" id="(q%8Dl1oi:StG[(66ru/">
+                            <mutation else="1"></mutation>
+                            <value name="IF0">
+                              <block type="get_value" id="Sfv)g$#UjUqiS8Yog7{!">
+                                <field name="ATTR">val</field>
+                                <field name="OID">javascript.0.Garagentor_offen</field>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="controls_if" id="1rDQ;vCZTP:hEKytj32$">
+                                <mutation else="1"></mutation>
+                                <value name="IF0">
+                                  <block type="logic_compare" id="$*8t)FL;.iKD7F@7t+~6">
+                                    <field name="OP">EQ</field>
+                                    <value name="A">
+                                      <block type="get_value" id="D%@B=D~}xp2qTgU_4*%R">
+                                        <field name="ATTR">val</field>
+                                        <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="text" id="Qxy?(s~+HBN|5R[^!02!">
+                                        <field name="TEXT">Tortrigger</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="control" id="mZHaOzV!,:0B*#[F%~No">
+                                    <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                    <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                    <field name="WITH_DELAY">FALSE</field>
+                                    <value name="VALUE">
+                                      <block type="text" id="pR8sU6zLvlICsolVs7X#">
+                                        <field name="TEXT">Tortrigger2</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </statement>
+                                <statement name="ELSE">
+                                  <block type="control" id="1MhMKm%odHo-F:O1eTd-">
+                                    <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                    <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                    <field name="WITH_DELAY">FALSE</field>
+                                    <value name="VALUE">
+                                      <block type="text" id="eeq;H~swP#FIaH3N9V#L">
+                                        <field name="TEXT">Tortrigger</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="timeouts_settimeout_variable" id="J2dlAn_5uC_E9/[W#D$v">
+                                    <field name="NAME">JetztEndlichZu</field>
+                                    <value name="DELAY_MS">
+                                      <shadow type="math_number" id="q/a1hZC%?jEY`b1kB0il">
+                                        <field name="NUM">1000</field>
+                                      </shadow>
+                                      <block type="variables_get" id="[quhpRrBRmUGH}i9BT*B">
+                                        <field name="VAR" id="E_tuhy8Lv6r{/BGZ#lWP">T_TorZu</field>
+                                      </block>
+                                    </value>
+                                    <statement name="STATEMENT">
+                                      <block type="controls_if" id="cBm@?!?a:,3DzzXfCy=o">
+                                        <value name="IF0">
+                                          <block type="logic_negate" id="1[L^~#s(6h]g[O{J^Zj(">
+                                            <value name="BOOL">
+                                              <block type="get_value" id="/HnBgJr=HKN?AAzG[LLX">
+                                                <field name="ATTR">val</field>
+                                                <field name="OID">javascript.0.Garagentor_zu</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO0">
+                                          <block type="telegram" id="w/N?V5Fu{nBL=%K?x8Cb">
+                                            <field name="INSTANCE">.0</field>
+                                            <field name="LOG"></field>
+                                            <field name="SILENT">FALSE</field>
+                                            <field name="PARSEMODE">default</field>
+                                            <field name="ESCAPING">FALSE</field>
+                                            <field name="DISABLE_WEB_PAGE_PREVIEW">FALSE</field>
+                                            <value name="MESSAGE">
+                                              <shadow type="text" id="Xl-dU4v-k;_uTyn)_O8_">
+                                                <field name="TEXT">Heizung</field>
+                                              </shadow>
+                                              <block type="text_join" id="|nmgYB4UYAw(B}]W-bY9" inline="false">
+                                                <mutation items="2"></mutation>
+                                                <value name="ADD0">
+                                                  <block type="text" id="|bc=gSpji71j.g:a(-g3">
+                                                    <field name="TEXT">Garagentor ist noch halb geöffnet! </field>
+                                                  </block>
+                                                </value>
+                                                <value name="ADD1">
+                                                  <block type="text" id="g?bRMiO7U3[)m?qN/d*p">
+                                                    <field name="TEXT">Ggf. verhindern Gegenstände das Schließen des Tors -&gt; bitte prüfen!</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="USERNAME">
+                                              <block type="get_value" id="=SY_?nJb3gPt=2k_zUXB">
+                                                <field name="ATTR">val</field>
+                                                <field name="OID">javascript.0.Telegram_Gruppe_Heizung</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="debug" id="PW0I,/?iykGv#i%ydAdy">
+                                                <field name="Severity">error</field>
+                                                <value name="TEXT">
+                                                  <shadow type="text" id="Lj-Ud@ZN4z!s*VKuQ-7F">
+                                                    <field name="TEXT">Garagentor muss geprüft werden - ggf. Gegenstände geklemmt!</field>
+                                                  </shadow>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <statement name="ELSE">
+                              <block type="controls_if" id="DW_x2jC@Gjy`:f6(M}+!">
+                                <value name="IF0">
+                                  <block type="get_value" id=";Y~DB$hfJ;y0HxmAdV*G">
+                                    <field name="ATTR">val</field>
+                                    <field name="OID">javascript.0.Garagentor_halboffen</field>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="telegram" id="0Q@^61;Mi7G[iqXfnpLe">
+                                    <field name="INSTANCE">.0</field>
+                                    <field name="LOG"></field>
+                                    <field name="SILENT">FALSE</field>
+                                    <field name="PARSEMODE">default</field>
+                                    <field name="ESCAPING">FALSE</field>
+                                    <field name="DISABLE_WEB_PAGE_PREVIEW">FALSE</field>
+                                    <value name="MESSAGE">
+                                      <shadow type="text" id="^[76zBfk=z*stbunTOz2">
+                                        <field name="TEXT">Heizung</field>
+                                      </shadow>
+                                      <block type="text_join" id="%sTniW2k#}Zy-Dz3Ssp7" inline="false">
+                                        <mutation items="2"></mutation>
+                                        <value name="ADD0">
+                                          <block type="text" id="+7s-*3r;b0|3Q=FJFqt-">
+                                            <field name="TEXT">Garagentor ist noch halb geöffnet! </field>
+                                          </block>
+                                        </value>
+                                        <value name="ADD1">
+                                          <block type="text" id="_p3Vj,.yA]tWt:Y+F0?n">
+                                            <field name="TEXT">Ggf. verhindern Gegenstände das Schließen des Tors -&gt; bitte prüfen!</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="USERNAME">
+                                      <block type="get_value" id="vVq}Mi4m(++Bq~-?m8YY">
+                                        <field name="ATTR">val</field>
+                                        <field name="OID">javascript.0.Telegram_Gruppe_Heizung</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="debug" id="vd9BW.!;;Q=-WRo!)RFT">
+                                        <field name="Severity">error</field>
+                                        <value name="TEXT">
+                                          <shadow type="text" id="alxZ-(.VA;?)f)4ZUcHW">
+                                            <field name="TEXT">Garagentor muss geprüft werden - ggf. Gegenstände geklemmt!</field>
+                                          </shadow>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                              </block>
+                            </statement>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="comment" id="K$*0]kpzGv;cCie~D8#w" x="170" y="-442">
+    <field name="COMMENT">Garagentorsteuerung</field>
+    <next>
+      <block type="create" id="Pqv(T6Gi],o^_%V.}?mJ">
+        <field name="NAME">Garagentor_offen</field>
+        <value name="VALUE">
+          <block type="logic_boolean" id="hxyZfm{?5Ga2y`l$mIMJ">
+            <field name="BOOL">FALSE</field>
+          </block>
+        </value>
+        <value name="COMMON">
+          <block type="text" id="@0bhl^H):EjlZ^G;l-6U">
+            <field name="TEXT">{"type": "boolean", "role": "value", "read": true, "write": true}</field>
+          </block>
+        </value>
+        <next>
+          <block type="create" id="N3-@h!x{38a[)/EDKd,y">
+            <field name="NAME">Garagentor_halboffen</field>
+            <value name="VALUE">
+              <block type="logic_boolean" id=")Bj6bdu%N?U)3EG`FQz0">
+                <field name="BOOL">FALSE</field>
+              </block>
+            </value>
+            <value name="COMMON">
+              <block type="text" id="x9GU~V11@+s(#zliwd$H">
+                <field name="TEXT">{"type": "boolean", "role": "value", "read": true, "write": true}</field>
+              </block>
+            </value>
+            <next>
+              <block type="create" id="i8888#NS@p7e3}!evm_4">
+                <field name="NAME">Garagentor_zu</field>
+                <value name="VALUE">
+                  <block type="logic_boolean" id="LneePF!x5Haw2#L:v}$7">
+                    <field name="BOOL">TRUE</field>
+                  </block>
+                </value>
+                <value name="COMMON">
+                  <block type="text" id=".H^n1hm_-DjT[6A~Yy1/">
+                    <field name="TEXT">{"type": "boolean", "role": "value", "read": true, "write": true}</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="comment" id="E-CQuZ+bCw2KJ:SfX4-Q">
+                    <field name="COMMENT">Zeit incl. Signallaufzeiten vom Trigger bis zur Rückmeldung</field>
+                    <next>
+                      <block type="variables_set" id="-Nnm2~GK@BM;M8Tft06w">
+                        <field name="VAR" id="E_tuhy8Lv6r{/BGZ#lWP">T_TorZu</field>
+                        <value name="VALUE">
+                          <block type="math_number" id="Tt^@1!SazV~*c|CcuPS4">
+                            <field name="NUM">30000</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="comment" id="N{fAN})f`3!bhP#p)Te3">
+                            <field name="COMMENT">Grundkonfiguration auf Basis Torstatus</field>
+                            <next>
+                              <block type="controls_if" id="F76i8a6x*qNEB*Z}OL$e">
+                                <value name="IF0">
+                                  <block type="logic_compare" id="?@LN[q]$Dh},nBxwUKGH">
+                                    <field name="OP">EQ</field>
+                                    <value name="A">
+                                      <block type="get_value" id="3|U:`D0Rwv/VOzjR!O~_">
+                                        <field name="ATTR">val</field>
+                                        <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.state.Zustand</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="text" id="L6Z#eauy+:DYl=Nv{h*Q">
+                                        <field name="TEXT">Tor geschlossen</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="update" id="{+Qhgf%%Lr{0(f:gcv5F">
+                                    <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                    <field name="OID">javascript.0.Garagentor_offen</field>
+                                    <field name="WITH_DELAY">FALSE</field>
+                                    <value name="VALUE">
+                                      <block type="logic_boolean" id="w?QDyqrR(cTEgj2ambve">
+                                        <field name="BOOL">FALSE</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="update" id="H]?a%zT+8:=%xUxZ?_P+">
+                                        <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                        <field name="OID">javascript.0.Garagentor_halboffen</field>
+                                        <field name="WITH_DELAY">FALSE</field>
+                                        <value name="VALUE">
+                                          <block type="logic_boolean" id="tr6w[_R]}_~EkicQ@}qE">
+                                            <field name="BOOL">FALSE</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="update" id="gvEQ,c$JD9yRzt^ioAM]">
+                                            <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                            <field name="OID">javascript.0.Garagentor_zu</field>
+                                            <field name="WITH_DELAY">FALSE</field>
+                                            <value name="VALUE">
+                                              <block type="logic_boolean" id="f#$k0qz(ChFEMo3#p!4a">
+                                                <field name="BOOL">TRUE</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="controls_if" id=":Z_!Ur0r%;##T42.q;/r">
+                                    <value name="IF0">
+                                      <block type="logic_compare" id="G);d2kr@/45*w+YdD2wA">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                          <block type="get_value" id="5b2NU59/1#ob81D=.(:h">
+                                            <field name="ATTR">val</field>
+                                            <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.state.Zustand</field>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="text" id="moJ6XWLX:lyyw]Klqw3i">
+                                            <field name="TEXT">Tor offen</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO0">
+                                      <block type="update" id=")cVJTvPp,3ALLcsDvvUf">
+                                        <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                        <field name="OID">javascript.0.Garagentor_offen</field>
+                                        <field name="WITH_DELAY">FALSE</field>
+                                        <value name="VALUE">
+                                          <block type="logic_boolean" id="(/|+*tAqn@1.wnJ_:5.-">
+                                            <field name="BOOL">TRUE</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="update" id="kq/Z4?HZ3H;ZJ_Eo}2tI">
+                                            <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                            <field name="OID">javascript.0.Garagentor_halboffen</field>
+                                            <field name="WITH_DELAY">FALSE</field>
+                                            <value name="VALUE">
+                                              <block type="logic_boolean" id="IHy{cbAOwD5#vAI#!+0:">
+                                                <field name="BOOL">FALSE</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="update" id="!|emrTK)W4SQvOLWel`A">
+                                                <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                <field name="OID">javascript.0.Garagentor_zu</field>
+                                                <field name="WITH_DELAY">FALSE</field>
+                                                <value name="VALUE">
+                                                  <block type="logic_boolean" id="6hT-mv}/@gRe%3r?7`d*">
+                                                    <field name="BOOL">FALSE</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="controls_if" id="Az[V0y)b{=5so%B_:q}B">
+                                        <value name="IF0">
+                                          <block type="logic_compare" id="OT[5VD_5ZUUhI.u)bq!c">
+                                            <field name="OP">EQ</field>
+                                            <value name="A">
+                                              <block type="get_value" id="vnUuyELe9af4_fwIiKKD">
+                                                <field name="ATTR">val</field>
+                                                <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.state.Zustand</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="text" id="E{qbE7ei*!6zKO*IF@D}">
+                                                <field name="TEXT">Torzustand unklar</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO0">
+                                          <block type="update" id="+w@8eDFmlGmM4f)z5=MR">
+                                            <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                            <field name="OID">javascript.0.Garagentor_offen</field>
+                                            <field name="WITH_DELAY">FALSE</field>
+                                            <value name="VALUE">
+                                              <block type="logic_boolean" id="zuDT31TvovKWKiYS*P87">
+                                                <field name="BOOL">FALSE</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="update" id="-X?@%V$j:Espm[@A(llh">
+                                                <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                <field name="OID">javascript.0.Garagentor_halboffen</field>
+                                                <field name="WITH_DELAY">FALSE</field>
+                                                <value name="VALUE">
+                                                  <block type="logic_boolean" id=";,Lwu=Hci|]pKZ[dM7hm">
+                                                    <field name="BOOL">TRUE</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="update" id="#qMtqoSIZhnx-@t2+[Y5">
+                                                    <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                    <field name="OID">javascript.0.Garagentor_zu</field>
+                                                    <field name="WITH_DELAY">FALSE</field>
+                                                    <value name="VALUE">
+                                                      <block type="logic_boolean" id="9Pn@E[pK[lvf$#S2)s-|">
+                                                        <field name="BOOL">FALSE</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="create" id="5(qt^J5XDtSs[;s+bE;o">
+                                            <field name="NAME">Garagentor_Trigger</field>
+                                            <value name="VALUE">
+                                              <block type="logic_boolean" id="U[x(Gv/{jBk0(}YL(6lh">
+                                                <field name="BOOL">FALSE</field>
+                                              </block>
+                                            </value>
+                                            <value name="COMMON">
+                                              <block type="text" id="SWz-qFdLtWP,zaKbanIi">
+                                                <field name="TEXT">{"type": "boolean", "role": "value", "read": true, "write": true}</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="on" id="SZOf#O#)Hc^(R5u`zU;W">
+                                                <field name="OID">hm-rpc.0.OEQ0485936.1.PRESS_SHORT</field>
+                                                <field name="CONDITION">any</field>
+                                                <field name="ACK_CONDITION">true</field>
+                                                <statement name="STATEMENT">
+                                                  <block type="controls_if" id="n9AgUV[b!.uD]K)DRZZg">
+                                                    <mutation else="1"></mutation>
+                                                    <value name="IF0">
+                                                      <block type="logic_compare" id="Q`B5G2WN[_7?_7Oy_UN}">
+                                                        <field name="OP">EQ</field>
+                                                        <value name="A">
+                                                          <block type="get_value" id="|FGyBf*IXRPX3kq4I(A!">
+                                                            <field name="ATTR">val</field>
+                                                            <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="B">
+                                                          <block type="text" id="7{|QUK9$g#g9g3FS(R$D">
+                                                            <field name="TEXT">Tortrigger</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                    <statement name="DO0">
+                                                      <block type="control" id="!],9n;:r{w+NLfeN~](m">
+                                                        <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                        <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                        <field name="WITH_DELAY">FALSE</field>
+                                                        <value name="VALUE">
+                                                          <block type="text" id="XCECQ0(BEpj|^3+srrw)">
+                                                            <field name="TEXT">Tortrigger2</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </statement>
+                                                    <statement name="ELSE">
+                                                      <block type="control" id="qQ5%*DTEnYq4{$8Sh,Z5">
+                                                        <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                        <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                        <field name="WITH_DELAY">FALSE</field>
+                                                        <value name="VALUE">
+                                                          <block type="text" id="]px%xohZU3,|E8Z$?fh8">
+                                                            <field name="TEXT">Tortrigger</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="debug" id="2$7Xt~$j-t@Hvr$Q!`2w" disabled="true">
+                                                        <field name="Severity">log</field>
+                                                        <value name="TEXT">
+                                                          <shadow type="text" id=".9aw?w-J0kf$8Cmw}s/G">
+                                                            <field name="TEXT">test</field>
+                                                          </shadow>
+                                                          <block type="get_value" id="sKvRkg3(X%md@j~%`@~=">
+                                                            <field name="ATTR">val</field>
+                                                            <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="on" id="1Ne=AH9LzO=ybj_wdqQ2">
+                                                    <field name="OID">hm-rpc.0.OEQ0485936.1.PRESS_LONG</field>
+                                                    <field name="CONDITION">any</field>
+                                                    <field name="ACK_CONDITION">true</field>
+                                                    <statement name="STATEMENT">
+                                                      <block type="controls_if" id="ANwz15YqK1Q`xqp~$G_p">
+                                                        <mutation else="1"></mutation>
+                                                        <value name="IF0">
+                                                          <block type="logic_compare" id="diXJsVu5pe5055~mT3^#">
+                                                            <field name="OP">EQ</field>
+                                                            <value name="A">
+                                                              <block type="get_value" id="+bEU_vyHwhlN,9OX7t6G">
+                                                                <field name="ATTR">val</field>
+                                                                <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="B">
+                                                              <block type="text" id=":e[loB($Wv6z2JX.dA1.">
+                                                                <field name="TEXT">Tortrigger</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                        <statement name="DO0">
+                                                          <block type="control" id="KvA29{=uW+t}fiqpx3o2">
+                                                            <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                            <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                            <field name="WITH_DELAY">FALSE</field>
+                                                            <value name="VALUE">
+                                                              <block type="text" id="uqAHIFYx+EkATNaZd3~Y">
+                                                                <field name="TEXT">Tortrigger2</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </statement>
+                                                        <statement name="ELSE">
+                                                          <block type="control" id="$$SV)uQRaK2]1w%CKEl~">
+                                                            <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                            <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                            <field name="WITH_DELAY">FALSE</field>
+                                                            <value name="VALUE">
+                                                              <block type="text" id="-9J7L#%^HA9i.)zBP`MR">
+                                                                <field name="TEXT">Tortrigger</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </statement>
+                                                        <next>
+                                                          <block type="debug" id="4dD#sP[tLP:lSXe)[Zbz" disabled="true">
+                                                            <field name="Severity">log</field>
+                                                            <value name="TEXT">
+                                                              <shadow type="text" id=".9aw?w-J0kf$8Cmw}s/G">
+                                                                <field name="TEXT">test</field>
+                                                              </shadow>
+                                                              <block type="get_value" id="+%CJK.3v4n02f)Mg+fJx">
+                                                                <field name="ATTR">val</field>
+                                                                <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="comment" id="~JRKdeKt57p+Kfr002Bz">
+                                                        <field name="COMMENT">Zustand des Garagentors</field>
+                                                        <next>
+                                                          <block type="on" id="KEVg+{Tn,g]3f{9K,L@;">
+                                                            <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.state.Zustand</field>
+                                                            <field name="CONDITION">ne</field>
+                                                            <field name="ACK_CONDITION"></field>
+                                                            <statement name="STATEMENT">
+                                                              <block type="controls_if" id="fnDXL_=!DGc?dD8]kz6.">
+                                                                <value name="IF0">
+                                                                  <block type="logic_compare" id="OzMf^$YW7{?zT.?c,+y@">
+                                                                    <field name="OP">EQ</field>
+                                                                    <value name="A">
+                                                                      <block type="on_source" id="`F#|*0u=eroO8Kuo%0[N">
+                                                                        <field name="ATTR">state.val</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="B">
+                                                                      <block type="text" id="WeSRhLQI).M.HN*:$-#~">
+                                                                        <field name="TEXT">Tor geschlossen</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                                <statement name="DO0">
+                                                                  <block type="update" id="#c!p#ueTu6p`C-.PGm|k">
+                                                                    <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                    <field name="OID">javascript.0.Garagentor_offen</field>
+                                                                    <field name="WITH_DELAY">FALSE</field>
+                                                                    <value name="VALUE">
+                                                                      <block type="logic_boolean" id="2,lv+1Z?K|~BT0kO_%lJ">
+                                                                        <field name="BOOL">FALSE</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="update" id="Q7zoC}|PcoHYzn9G#((*">
+                                                                        <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                        <field name="OID">javascript.0.Garagentor_halboffen</field>
+                                                                        <field name="WITH_DELAY">FALSE</field>
+                                                                        <value name="VALUE">
+                                                                          <block type="logic_boolean" id="/fQJGz|3[^Zxe4bJw4dO">
+                                                                            <field name="BOOL">FALSE</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <next>
+                                                                          <block type="update" id="x~5L_N2nw[{fHrv$Ozhx">
+                                                                            <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                            <field name="OID">javascript.0.Garagentor_zu</field>
+                                                                            <field name="WITH_DELAY">FALSE</field>
+                                                                            <value name="VALUE">
+                                                                              <block type="logic_boolean" id="ih;-ckODQge%K{U#3epR">
+                                                                                <field name="BOOL">TRUE</field>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </statement>
+                                                                <next>
+                                                                  <block type="controls_if" id="oGZWr9opHDu%H#=X{Q3s">
+                                                                    <value name="IF0">
+                                                                      <block type="logic_compare" id="@/9td(uP,}c_YN!K6Z%|">
+                                                                        <field name="OP">EQ</field>
+                                                                        <value name="A">
+                                                                          <block type="on_source" id="45:,_je7PT{77o{eXmxJ">
+                                                                            <field name="ATTR">state.val</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="B">
+                                                                          <block type="text" id="V[Q=l1F7eK$8Uz[g53`E">
+                                                                            <field name="TEXT">Tor offen</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                    <statement name="DO0">
+                                                                      <block type="update" id="%p{D:L8M`pd+50Mk!lK)">
+                                                                        <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                        <field name="OID">javascript.0.Garagentor_offen</field>
+                                                                        <field name="WITH_DELAY">FALSE</field>
+                                                                        <value name="VALUE">
+                                                                          <block type="logic_boolean" id="OcU@(-4h5n3T2k+ZahYQ">
+                                                                            <field name="BOOL">TRUE</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <next>
+                                                                          <block type="update" id="mcZGG%PM1JL0%kqv?08H">
+                                                                            <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                            <field name="OID">javascript.0.Garagentor_halboffen</field>
+                                                                            <field name="WITH_DELAY">FALSE</field>
+                                                                            <value name="VALUE">
+                                                                              <block type="logic_boolean" id="lSI))):T$UK6bqRBcDs:">
+                                                                                <field name="BOOL">FALSE</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <next>
+                                                                              <block type="update" id="8t@plIvQ3m{K`:q`54.C">
+                                                                                <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                                <field name="OID">javascript.0.Garagentor_zu</field>
+                                                                                <field name="WITH_DELAY">FALSE</field>
+                                                                                <value name="VALUE">
+                                                                                  <block type="logic_boolean" id="6vpIh9lC0`jCCX]Z$PRO">
+                                                                                    <field name="BOOL">FALSE</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </statement>
+                                                                    <next>
+                                                                      <block type="controls_if" id="klD[q{Va]^6gNY/)zu$N">
+                                                                        <value name="IF0">
+                                                                          <block type="logic_compare" id=".!9ezYFBsRk]9JT2lsM~">
+                                                                            <field name="OP">EQ</field>
+                                                                            <value name="A">
+                                                                              <block type="on_source" id=":@3^_p:D^]gdXdMKVbY!">
+                                                                                <field name="ATTR">state.val</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <value name="B">
+                                                                              <block type="text" id="qq:p.nd-(mj#ATIWVK:x">
+                                                                                <field name="TEXT">Torzustand unklar</field>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </value>
+                                                                        <statement name="DO0">
+                                                                          <block type="update" id="QF{:x=c[c6J;P-hPOylY">
+                                                                            <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                            <field name="OID">javascript.0.Garagentor_offen</field>
+                                                                            <field name="WITH_DELAY">FALSE</field>
+                                                                            <value name="VALUE">
+                                                                              <block type="logic_boolean" id="FpRv:XXkKN-B`6P/=Y4^">
+                                                                                <field name="BOOL">FALSE</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <next>
+                                                                              <block type="update" id="bihTo/?X^d/y;$:t/hgc">
+                                                                                <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                                <field name="OID">javascript.0.Garagentor_halboffen</field>
+                                                                                <field name="WITH_DELAY">FALSE</field>
+                                                                                <value name="VALUE">
+                                                                                  <block type="logic_boolean" id="_(!-=aA[v+H~ycUyGDc=">
+                                                                                    <field name="BOOL">TRUE</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <next>
+                                                                                  <block type="update" id="Co/8%w.Siw:I?[6Wk6IS">
+                                                                                    <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                                    <field name="OID">javascript.0.Garagentor_zu</field>
+                                                                                    <field name="WITH_DELAY">FALSE</field>
+                                                                                    <value name="VALUE">
+                                                                                      <block type="logic_boolean" id="^AnD=wd7Mj!2oL-u1Rq6">
+                                                                                        <field name="BOOL">FALSE</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </statement>
+                                                                        <next>
+                                                                          <block type="debug" id="-R8ISrBT8#;NbhxT6?^W" disabled="true">
+                                                                            <field name="Severity">log</field>
+                                                                            <value name="TEXT">
+                                                                              <shadow type="text" id="AC(}Q/yMmm?4md_R1Sf}">
+                                                                                <field name="TEXT">test</field>
+                                                                              </shadow>
+                                                                              <block type="on_source" id="(YSN@Z[qcHet)vx?e6H`">
+                                                                                <field name="ATTR">state.val</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <next>
+                                                                              <block type="debug" id="70Mu6lWI@I~iCy1c{-cR" disabled="true">
+                                                                                <field name="Severity">log</field>
+                                                                                <value name="TEXT">
+                                                                                  <shadow type="text" id=")b=SbGc0mUxFEPQ*mcmK">
+                                                                                    <field name="TEXT">test</field>
+                                                                                  </shadow>
+                                                                                  <block type="get_attr" id="D?O`=R0bMT_xBb)`tn.S">
+                                                                                    <value name="PATH">
+                                                                                      <shadow type="text" id="wl5^pgc7v}Ubg2*_4v]R">
+                                                                                        <field name="TEXT">state</field>
+                                                                                      </shadow>
+                                                                                    </value>
+                                                                                    <value name="OBJECT">
+                                                                                      <block type="convert_json2object" id="{Yif1wu$ZpfP(z^bs:ko">
+                                                                                        <value name="VALUE">
+                                                                                          <block type="on_source" id="3VMkDk~{F{q+G=#b,Z5%">
+                                                                                            <field name="ATTR">state.val</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </statement>
+                                                            <next>
+                                                              <block type="comment" id="Sa|)Dpsg+ZxLZFPPvUSr">
+                                                                <field name="COMMENT">Trigger steuer ESP32</field>
+                                                                <next>
+                                                                  <block type="on" id="9`eb~.YomI`#Y|Q=rq/%">
+                                                                    <field name="OID">javascript.0.Garagentor_Trigger</field>
+                                                                    <field name="CONDITION">any</field>
+                                                                    <field name="ACK_CONDITION">false</field>
+                                                                    <statement name="STATEMENT">
+                                                                      <block type="controls_if" id="IDJTxwf;bW{QTek?fTas">
+                                                                        <value name="IF0">
+                                                                          <block type="on_source" id="nBR@w)OU.{s8,jkQ=H7k">
+                                                                            <field name="ATTR">state.val</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <statement name="DO0">
+                                                                          <block type="controls_if" id="S^h@BAfG7cLHR@hk,dN,">
+                                                                            <mutation else="1"></mutation>
+                                                                            <value name="IF0">
+                                                                              <block type="logic_compare" id="J[Cp#J^E:}~tkLje-XQb">
+                                                                                <field name="OP">EQ</field>
+                                                                                <value name="A">
+                                                                                  <block type="get_value" id="~pKplu=)%3{]3)|6xqdR">
+                                                                                    <field name="ATTR">val</field>
+                                                                                    <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <value name="B">
+                                                                                  <block type="text" id="xBJBqZS3=h[luxuNb%WX">
+                                                                                    <field name="TEXT">Tortrigger</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </value>
+                                                                            <statement name="DO0">
+                                                                              <block type="control" id="LvaKn#4cEZ%evAO+=qPf">
+                                                                                <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                                <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                                                <field name="WITH_DELAY">FALSE</field>
+                                                                                <value name="VALUE">
+                                                                                  <block type="text" id="b+xBUY04a91WGWS3BB_h">
+                                                                                    <field name="TEXT">Tortrigger2</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </statement>
+                                                                            <statement name="ELSE">
+                                                                              <block type="control" id="[*,(*UG4d;f8j},*NrT0">
+                                                                                <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                                <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                                                <field name="WITH_DELAY">FALSE</field>
+                                                                                <value name="VALUE">
+                                                                                  <block type="text" id="+pn7o=Oq(9J)2cShdDqs">
+                                                                                    <field name="TEXT">Tortrigger</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </statement>
+                                                                          </block>
+                                                                        </statement>
+                                                                        <next>
+                                                                          <block type="timeouts_wait" id="vnpYa$o7T0RRSbl+!?ZW">
+                                                                            <field name="DELAY">500</field>
+                                                                            <field name="UNIT">ms</field>
+                                                                            <next>
+                                                                              <block type="update" id="t,yA{#i7t{#~vFMzSavp">
+                                                                                <mutation xmlns="http://www.w3.org/1999/xhtml" delay_input="false"></mutation>
+                                                                                <field name="OID">javascript.0.Garagentor_Trigger</field>
+                                                                                <field name="WITH_DELAY">FALSE</field>
+                                                                                <value name="VALUE">
+                                                                                  <block type="logic_boolean" id="hdUb66Q.Oqh7WviDM6`(">
+                                                                                    <field name="BOOL">FALSE</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <next>
+                                                                                  <block type="debug" id="e_yLBaBsexS^x=j.jzwj" disabled="true">
+                                                                                    <field name="Severity">log</field>
+                                                                                    <value name="TEXT">
+                                                                                      <shadow type="text" id=".9aw?w-J0kf$8Cmw}s/G">
+                                                                                        <field name="TEXT">test</field>
+                                                                                      </shadow>
+                                                                                      <block type="get_value" id="tAeT_:Tp+[QC;(4u`Ps9">
+                                                                                        <field name="ATTR">val</field>
+                                                                                        <field name="OID">mqtt.0.SmartHome.Garage.ESP32_Garagentorsteuerung.command</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </statement>
+                                                                    <next>
+                                                                      <block type="comment" id="{t$K15k]2T!*`ewbJ;kQ">
+                                                                        <field name="COMMENT">Abfrage 07:20 Garage noch offen? -&gt; zu (haben die Kinder vergessen...)</field>
+                                                                        <next>
+                                                                          <block type="schedule" id="F,oP39DUw-fNZ9#C;rxb">
+                                                                            <field name="SCHEDULE">20 7 * * *</field>
+                                                                            <statement name="STATEMENT">
+                                                                              <block type="debug" id=";DP^xaNB)dOH2@}t?65Y">
+                                                                                <field name="Severity">log</field>
+                                                                                <value name="TEXT">
+                                                                                  <shadow type="text" id="`V5e:1L6+iW9%j:VC5Rc">
+                                                                                    <field name="TEXT">Garage zufahren - 20:00</field>
+                                                                                  </shadow>
+                                                                                </value>
+                                                                                <next>
+                                                                                  <block type="procedures_callnoreturn" id="Ex[n0owJPKnS$BwRFWZ+">
+                                                                                    <mutation name="Garagentor_zufahren"></mutation>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </statement>
+                                                                            <next>
+                                                                              <block type="comment" id="HmKmSKTgPKJ~GKUC_}py">
+                                                                                <field name="COMMENT">Abfrage 20:00 Garage noch offen? -&gt; zu</field>
+                                                                                <next>
+                                                                                  <block type="debug" id="-K4^DsO;loM;di8NaoH{" disabled="true">
+                                                                                    <field name="Severity">log</field>
+                                                                                    <value name="TEXT">
+                                                                                      <shadow type="text" id="]2_1!B=$Af%Mi8#f(E-M">
+                                                                                        <field name="TEXT">Garage zufahren - 20:00</field>
+                                                                                      </shadow>
+                                                                                      <block type="time_get" id="p:lPV51p}_feRLT2rkh1">
+                                                                                        <mutation xmlns="http://www.w3.org/1999/xhtml" format="false" language="false"></mutation>
+                                                                                        <field name="OPTION">hh:mm:ss</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <next>
+                                                                                      <block type="schedule" id="QV|VTF`ITJa}4~x2j50B">
+                                                                                        <field name="SCHEDULE">0 20 * * *</field>
+                                                                                        <statement name="STATEMENT">
+                                                                                          <block type="debug" id="?sWWEluk=nb;$//1iUp/">
+                                                                                            <field name="Severity">log</field>
+                                                                                            <value name="TEXT">
+                                                                                              <shadow type="text" id="?hUA*YI.wn*E2EmWxc74">
+                                                                                                <field name="TEXT">Garage zufahren - 20:00</field>
+                                                                                              </shadow>
+                                                                                            </value>
+                                                                                            <next>
+                                                                                              <block type="procedures_callnoreturn" id="vY^-^|jwTY4y+_%ybF~S">
+                                                                                                <mutation name="Garagentor_zufahren"></mutation>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </statement>
+                                                                                        <next>
+                                                                                          <block type="comment" id="4jf8r*ST-9ru;sqq@Nw;">
+                                                                                            <field name="COMMENT">Abfrage 21:00 Garage noch offen? -&gt; zu</field>
+                                                                                            <next>
+                                                                                              <block type="schedule" id="E(YTA$:~k7-[e3hYai2,">
+                                                                                                <field name="SCHEDULE">0 21 * * *</field>
+                                                                                                <statement name="STATEMENT">
+                                                                                                  <block type="debug" id="BRU8K%I)A;ZR,e9C}6~7">
+                                                                                                    <field name="Severity">log</field>
+                                                                                                    <value name="TEXT">
+                                                                                                      <shadow type="text" id="g93Sya3H}TLYeWF}9Mxw">
+                                                                                                        <field name="TEXT">Garage zufahren - 20:00</field>
+                                                                                                      </shadow>
+                                                                                                    </value>
+                                                                                                    <next>
+                                                                                                      <block type="procedures_callnoreturn" id="M5XO7J_JP%w7{WGv5kCX">
+                                                                                                        <mutation name="Garagentor_zufahren"></mutation>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </statement>
+                                                                                                <next>
+                                                                                                  <block type="comment" id="%$t^iRPuRLml.(?u$2tB">
+                                                                                                    <field name="COMMENT">Abfrage 22:00 Garage noch offen? -&gt; zu</field>
+                                                                                                    <next>
+                                                                                                      <block type="schedule" id="IcC9+ge$w9F`u3lh#B/e">
+                                                                                                        <field name="SCHEDULE">0 22 * * *</field>
+                                                                                                        <statement name="STATEMENT">
+                                                                                                          <block type="debug" id="90{!#K1XTF(bgm}DXZ[C">
+                                                                                                            <field name="Severity">log</field>
+                                                                                                            <value name="TEXT">
+                                                                                                              <shadow type="text" id=",H_us!r@-gV81%jWJ1z;">
+                                                                                                                <field name="TEXT">Garage zufahren - 20:00</field>
+                                                                                                              </shadow>
+                                                                                                            </value>
+                                                                                                            <next>
+                                                                                                              <block type="procedures_callnoreturn" id="sWo8DZh]aFwcO]V/PB!_">
+                                                                                                                <mutation name="Garagentor_zufahren"></mutation>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </statement>
+                                                                                                        <next>
+                                                                                                          <block type="comment" id="J:.8zJw*[:OZ%?MLxS]Q">
+                                                                                                            <field name="COMMENT">Abfrage 23:00 Garage noch offen? -&gt; zu</field>
+                                                                                                            <next>
+                                                                                                              <block type="schedule" id="u?+PESg(ptvj1,@O[r$k">
+                                                                                                                <field name="SCHEDULE">0 23 * * *</field>
+                                                                                                                <statement name="STATEMENT">
+                                                                                                                  <block type="debug" id="N!cZN~0)sv+!F=C${Eg(">
+                                                                                                                    <field name="Severity">log</field>
+                                                                                                                    <value name="TEXT">
+                                                                                                                      <shadow type="text" id="6E4q9P(P#$r:-pTE:aPA">
+                                                                                                                        <field name="TEXT">Garage zufahren - 20:00</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                    <next>
+                                                                                                                      <block type="procedures_callnoreturn" id="{t@=xg.y=/+=+n0cpYRo">
+                                                                                                                        <mutation name="Garagentor_zufahren"></mutation>
+                                                                                                                      </block>
+                                                                                                                    </next>
+                                                                                                                  </block>
+                                                                                                                </statement>
+                                                                                                                <next>
+                                                                                                                  <block type="comment" id="SB5G23SSBI,#@zGAzAY[">
+                                                                                                                    <field name="COMMENT">Abfrage 23:30 Garage noch offen? -&gt; Alarm</field>
+                                                                                                                    <next>
+                                                                                                                      <block type="controls_if" id="XP+GR+aYiu(xv2#PI`-q">
+                                                                                                                        <value name="IF0">
+                                                                                                                          <block type="time_compare" id="OpMt!uK:PY1Y+Xtm3N?]">
+                                                                                                                            <mutation xmlns="http://www.w3.org/1999/xhtml" end_time="false"></mutation>
+                                                                                                                            <field name="OPTION">==</field>
+                                                                                                                            <field name="START_TIME">23:30</field>
+                                                                                                                          </block>
+                                                                                                                        </value>
+                                                                                                                        <statement name="DO0">
+                                                                                                                          <block type="controls_if" id="aI1ol[e:)]}96v/m0RTz">
+                                                                                                                            <value name="IF0">
+                                                                                                                              <block type="logic_operation" id="I0=#f[rY:C^ncjZ[-ryC">
+                                                                                                                                <field name="OP">OR</field>
+                                                                                                                                <value name="A">
+                                                                                                                                  <block type="get_value" id="M]BnJ}{:9ZMfwoDTm8NK">
+                                                                                                                                    <field name="ATTR">val</field>
+                                                                                                                                    <field name="OID">javascript.0.Garagentor_offen</field>
+                                                                                                                                  </block>
+                                                                                                                                </value>
+                                                                                                                                <value name="B">
+                                                                                                                                  <block type="get_value" id="d8mhhxnb{Xz/YdXrI@!+">
+                                                                                                                                    <field name="ATTR">val</field>
+                                                                                                                                    <field name="OID">javascript.0.Garagentor_halboffen</field>
+                                                                                                                                  </block>
+                                                                                                                                </value>
+                                                                                                                              </block>
+                                                                                                                            </value>
+                                                                                                                            <statement name="DO0">
+                                                                                                                              <block type="telegram" id="yAVu$;bdJa]U7s-AQ{wc">
+                                                                                                                                <field name="INSTANCE">.0</field>
+                                                                                                                                <field name="LOG"></field>
+                                                                                                                                <field name="SILENT">FALSE</field>
+                                                                                                                                <field name="PARSEMODE">default</field>
+                                                                                                                                <field name="ESCAPING">FALSE</field>
+                                                                                                                                <field name="DISABLE_WEB_PAGE_PREVIEW">FALSE</field>
+                                                                                                                                <value name="MESSAGE">
+                                                                                                                                  <shadow type="text" id="U_U|qel~H7}B+V0W*Si.">
+                                                                                                                                    <field name="TEXT">Heizung</field>
+                                                                                                                                  </shadow>
+                                                                                                                                  <block type="text_join" id="N|I~1t1*K{f`)}gq3;%0" inline="false">
+                                                                                                                                    <mutation items="2"></mutation>
+                                                                                                                                    <value name="ADD0">
+                                                                                                                                      <block type="text" id="DX(09db@)]zhhbhD#rQU">
+                                                                                                                                        <field name="TEXT">Achtung: Garagentor ist noch halb geöffnet, oder vollständig offen! </field>
+                                                                                                                                      </block>
+                                                                                                                                    </value>
+                                                                                                                                    <value name="ADD1">
+                                                                                                                                      <block type="text" id="o5UcwMiz{.;6_?euzoAQ">
+                                                                                                                                        <field name="TEXT">Bitte Tor prüfen!</field>
+                                                                                                                                      </block>
+                                                                                                                                    </value>
+                                                                                                                                  </block>
+                                                                                                                                </value>
+                                                                                                                                <value name="USERNAME">
+                                                                                                                                  <block type="get_value" id="REnoIv/AQiqYl(y|R}Wo">
+                                                                                                                                    <field name="ATTR">val</field>
+                                                                                                                                    <field name="OID">javascript.0.Telegram_Gruppe_Heizung</field>
+                                                                                                                                  </block>
+                                                                                                                                </value>
+                                                                                                                              </block>
+                                                                                                                            </statement>
+                                                                                                                          </block>
+                                                                                                                        </statement>
+                                                                                                                      </block>
+                                                                                                                    </next>
+                                                                                                                  </block>
+                                                                                                                </next>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

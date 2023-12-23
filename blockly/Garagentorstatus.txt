@@ -1,0 +1,125 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="G!k~l~R2t]T!G49wjj+e">Message</variable>
+  </variables>
+  <block type="create" id=",?=PqWZl6Jm#@{7RdEJQ" x="88" y="-87">
+    <field name="NAME">Garagentor_Statustrigger</field>
+    <value name="VALUE">
+      <block type="logic_boolean" id="TmB*$E$tu9?1t*4xK{NM">
+        <field name="BOOL">FALSE</field>
+      </block>
+    </value>
+    <value name="COMMON">
+      <block type="text" id="@w$P)c3qb+1Be3KA,])*">
+        <field name="TEXT">{"type": "boolean", "role": "value", "read": true, "write": true}</field>
+      </block>
+    </value>
+    <next>
+      <block type="variables_set" id="S|/1Ekl_FGl.7?BqUv-#">
+        <field name="VAR" id="G!k~l~R2t]T!G49wjj+e">Message</field>
+        <value name="VALUE">
+          <block type="text" id="~5-]=N*M:YcV_l^Mgx;t">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <next>
+          <block type="on" id="`El^DP!M,?[6YYC/#Hj(">
+            <field name="OID">javascript.0.Garagentor_Statustrigger</field>
+            <field name="CONDITION">any</field>
+            <field name="ACK_CONDITION"></field>
+            <statement name="STATEMENT">
+              <block type="controls_if" id="q#w2`gNs?*h5u;piF427">
+                <value name="IF0">
+                  <block type="get_value" id="JM@2Xi``w;dud/;as33L">
+                    <field name="ATTR">val</field>
+                    <field name="OID">javascript.0.Garagentor_zu</field>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="variables_set" id="U^47wOUzJz[$KLGd7~lf">
+                    <field name="VAR" id="G!k~l~R2t]T!G49wjj+e">Message</field>
+                    <value name="VALUE">
+                      <block type="text" id="%wYJ`?yS`PP$s9SK0xk}">
+                        <field name="TEXT">Die Garage ist zu.</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <next>
+                  <block type="controls_if" id="d+cuo}`JeP^p3hP=}N02">
+                    <value name="IF0">
+                      <block type="get_value" id="BlWdlI,k=f:ZW.2x%Nh5">
+                        <field name="ATTR">val</field>
+                        <field name="OID">javascript.0.Garagentor_offen</field>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="variables_set" id="Z#efH}ev:qB9V%Rq8RoZ">
+                        <field name="VAR" id="G!k~l~R2t]T!G49wjj+e">Message</field>
+                        <value name="VALUE">
+                          <block type="text" id="Ota`gK;D):gIYKW~~#03">
+                            <field name="TEXT">Die Garage ist offen.</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="controls_if" id="7.chsnlbe#e`W.d!3=Wn">
+                        <value name="IF0">
+                          <block type="get_value" id="@hSDmEmD:x[S9_w!fP9E">
+                            <field name="ATTR">val</field>
+                            <field name="OID">javascript.0.Garagentor_halboffen</field>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="variables_set" id="Up=;m].sc9+[Aw/Q|,/G">
+                            <field name="VAR" id="G!k~l~R2t]T!G49wjj+e">Message</field>
+                            <value name="VALUE">
+                              <block type="text" id="rB^]QRlLSNA21;/b%_)$">
+                                <field name="TEXT">Die Garage ist halb offen.</field>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="timeouts_wait" id="[h1I7s4|(AL0w}n3.af?">
+                            <field name="DELAY">1</field>
+                            <field name="UNIT">sec</field>
+                            <next>
+                              <block type="telegram" id="4Y~tMw0/})d^]__x!TgC">
+                                <field name="INSTANCE">.0</field>
+                                <field name="LOG"></field>
+                                <field name="SILENT">FALSE</field>
+                                <field name="PARSEMODE">default</field>
+                                <field name="ESCAPING">FALSE</field>
+                                <field name="DISABLE_WEB_PAGE_PREVIEW">FALSE</field>
+                                <value name="MESSAGE">
+                                  <shadow type="text" id="jpg;tMM2wZg]I7!`yMk8">
+                                    <field name="TEXT">Heizung</field>
+                                  </shadow>
+                                  <block type="variables_get" id="%%YehrH:Da!.[hz{hblu">
+                                    <field name="VAR" id="G!k~l~R2t]T!G49wjj+e">Message</field>
+                                  </block>
+                                </value>
+                                <value name="USERNAME">
+                                  <block type="get_value" id="Sr]y.$@FGsGl@=]x}#kX">
+                                    <field name="ATTR">val</field>
+                                    <field name="OID">javascript.0.Telegram_Gruppe_Heizung</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

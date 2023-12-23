@@ -1,2 +1,2 @@
 # Garagensteuerung
-Steuerung eines Garagentorantriebs via Relaistrigger
+Steuerung eines Garagentorantriebs (Platine und Software) via Relaistrigger

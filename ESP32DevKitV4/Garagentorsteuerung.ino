@@ -4,6 +4,7 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <PubSubClient.h>
+#include <LiquidCrystal_I2C.h>
 #include <EmonLib.h>                   // Auswertung der SCT013-Sensoren
 #include <esp_task_wdt.h>
 
@@ -29,7 +30,7 @@ const char* password = "YourWiFiPassword";
 WiFiClient myWiFiClient;
 
 //Definition der Zugangsdaten MQTT
-#define MQTT_SERVER "192.168.2.127"
+#define MQTT_SERVER "192.168.2.25"
 #define MQTT_PORT 1883
 #define MQTT_USER "YourMQTTBrokerAccount"
 #define MQTT_PASSWORD "YourMQTTPassword"
@@ -51,8 +52,8 @@ unsigned long MQTTReconnect = 0;
 PubSubClient mqttClient(myWiFiClient);
 
 // Zeitsteuerung für Tor auf und Tor zu
-float timeTorAuf = 25.0;            // Gesamtzeit zum Öffnen des Garagentors [s]
-float timeTorZu = 21.0;             // Gesamtzeit zum Schließen des Garagentors [s]
+float timeTorAuf = 15.0;            // Gesamtzeit zum Öffnen des Garagentors [s]
+float timeTorZu = 20.0;             // Gesamtzeit zum Schließen des Garagentors [s]
 float timeHysterese = 1.0;          // Zeithysterese bei einer Auf-Auf-, Zu-Zu- oder schnellen Auf-Zu-Schaltung [s]
 int volatile zustand = 0;           // aktuell gewünschte Toröffnung [0 = zu; 100 = auf; x -> Prozent Toröffnung über]
 bool volatile positionZu = 0;       // Reed-Sensor 1 ist aktiv und Tor ist geschlossen
@@ -489,7 +490,6 @@ void mqttConnect () {
   Serial.print(" wird aufgebaut ");  
   while (!mqttClient.connected()) {
     Serial.print(".");
-	i++;
     if (mqttClient.connect(MQTT_CLIENTID, MQTT_USER, MQTT_PASSWORD, MQTT_SERIAL_PUBLISH_STATUS, 0, true, "false")) {
       mqttClient.publish(MQTT_SERIAL_PUBLISH_STATUS, "true", true);
       Serial.println("");
@@ -543,6 +543,7 @@ static void MQTTwatchdog (void *args){
 
     // Task schlafen legen - restart alle 2s = 2*1000 ticks = 2000 ticks
     // mit mqttClient.loop() wird auch der MQTTcallback ausgeführt!
+    mqttClient.loop();
     vTaskDelayUntil(&ticktime, 2000);
   }
 }
@@ -628,6 +629,7 @@ static void getTempFromSensor (void *args){
     assert(rc == pdPASS);
 
     // Task schlafen legen - restart alle 20s = 20*1000 ticks = 20000 ticks
+    mqttClient.loop();
     vTaskDelayUntil(&ticktime, 20000);
   }
 }
@@ -672,6 +674,7 @@ static void doorMotion (void *args){
 
     // Task schlafen legen - restart MQTTStateRefresh ticks
     LEDblinkMsg();
+    mqttClient.loop();
     vTaskDelayUntil(&ticktime, 500); // check alle 500ms
   }
 }
@@ -808,6 +811,7 @@ static void stateMaschine(void *args){
     if (debug > 1) Serial.println(stateZu);
 
     // Task schlafen legen - restart alle 1s = 1*1000 ticks = 1000 ticks
+    mqttClient.loop();
     vTaskDelayUntil(&ticktime, 1000);
   }
 }
@@ -983,7 +987,7 @@ void setup() {
   Serial.println("Start Setup");
   // Initialisierung der LED-Outputs
   pinMode(LED_ERROR, OUTPUT);
-  digitalWrite(LED_ERROR, LOW);
+  digitalWrite(LED_ERROR, HIGH);
   pinMode(LED_MSG, OUTPUT);
   digitalWrite(LED_MSG, HIGH);
   pinMode(LED_OK, OUTPUT);
@@ -1166,6 +1170,7 @@ void setup() {
   assert(rc == pdPASS);
   Serial.println("window-Task gestartet.");
   //OK-Blinker
+  digitalWrite(LED_ERROR, LOW);
   digitalWrite(LED_MSG, LOW);
   delay(500);
   digitalWrite(LED_MSG, HIGH);

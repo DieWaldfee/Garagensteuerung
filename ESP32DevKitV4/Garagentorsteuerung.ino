@@ -7,6 +7,7 @@
 #include <LiquidCrystal_I2C.h>
 #include <EmonLib.h>                   // Auswertung der SCT013-Sensoren
 #include <esp_task_wdt.h>
+#include "secrets.h"
 
 #define LED_ERROR 23
 #define LED_MSG 22
@@ -24,16 +25,9 @@ bool tempError = 0;                    // tempError = 1 => keine DS18B20-Sensore
 static String lastError = "";
 
 // Definition der Zugangsdaten WiFi
-#define HOSTNAME "ESP32_Garagentorsteuerung"
-const char* ssid = "YourSSID";
-const char* password = "YourWiFiPassword";
 WiFiClient myWiFiClient;
 
 //Definition der Zugangsdaten MQTT
-#define MQTT_SERVER "192.168.2.25"
-#define MQTT_PORT 1883
-#define MQTT_USER "YourMQTTBrokerAccount"
-#define MQTT_PASSWORD "YourMQTTPassword"
 #define MQTT_CLIENTID "ESP32_Garagentorsteuerung" //Name muss eineindeutig auf dem MQTT-Broker sein!
 #define MQTT_KEEPALIVE 90
 #define MQTT_SOCKETTIMEOUT 30
@@ -450,6 +444,9 @@ static void MQTTstate (void *args){
   //ticktime initialisieren
   ticktime = xTaskGetTickCount();
 
+  er = esp_task_wdt_add(NULL);   // Task zur Überwachung hinzugefügt  
+  assert(er == ESP_OK); 
+
   for (;;){                        // Dauerschleife des Tasks
     // Watchdog zurücksetzen
     esp_task_wdt_reset();
@@ -613,6 +610,9 @@ static void getTempFromSensor (void *args){
   //ticktime initialisieren
   ticktime = xTaskGetTickCount();
 
+  er = esp_task_wdt_add(NULL);   // Task zur Überwachung hinzugefügt  
+  assert(er == ESP_OK); 
+
   for (;;){                        // Dauerschleife des Tasks
     // Watchdog zurücksetzen
     esp_task_wdt_reset();
@@ -753,6 +753,9 @@ static void stateMaschine(void *args){
 
   //ticktime initialisieren
   ticktime = xTaskGetTickCount();
+
+  er = esp_task_wdt_add(NULL);   // Task zur Überwachung hinzugefügt  
+  assert(er == ESP_OK); 
 
   for (;;){                        // Dauerschleife des Tasks
     // Watchdog zurücksetzen
@@ -979,7 +982,13 @@ static void window(void *args){
 void setup() {
   //Watchdog starten
   esp_err_t er;
-  er = esp_task_wdt_init(300,true);  //restart nach 5min = 300s Inaktivität einer der 4 überwachten Tasks 
+  esp_task_wdt_config_t wdt_config = {
+    .timeout_ms = 300000,  // 5 Minuten = 300000 ms
+    .idle_core_mask = (1 << 1),  // Nur Kerne 1 überwachen
+    //.idle_core_mask = (1 << portNUM_PROCESSORS) - 1,  // Alle Kerne überwachen
+    .trigger_panic = true
+  };
+  er = esp_task_wdt_reconfigure(&wdt_config);  //restart nach 5min = 300s Inaktivität einer der 4 überwachten Tasks 
   assert(er == ESP_OK); 
   // Initialisierung und Plausibilitaetschecks
   Serial.begin(115200);
@@ -1100,12 +1109,6 @@ void setup() {
       app_cpu);                  //CPU_ID
     assert(rc == pdPASS);
     Serial.println("TempSensor-Task gestartet.");
-    er = esp_task_wdt_status(hgetTempFromSensor);  // Check, ob der Task schon überwacht wird
-    assert(er == ESP_ERR_NOT_FOUND);
-    if (er == ESP_ERR_NOT_FOUND) {
-      er = esp_task_wdt_add(hgetTempFromSensor);   // Task zur Überwachung hinzugefügt  
-      assert(er == ESP_OK); 
-    }
   }
   rc = xTaskCreatePinnedToCore(
     MQTTwatchdog,              //Taskroutine
@@ -1126,12 +1129,6 @@ void setup() {
     &hMQTTstate,               //handler
     app_cpu);                  //CPU_ID
   assert(rc == pdPASS);
-  er = esp_task_wdt_status(hMQTTstate);  // Check, ob der Task schon überwacht wird
-  assert(er == ESP_ERR_NOT_FOUND);
-  if (er == ESP_ERR_NOT_FOUND) {
-    er = esp_task_wdt_add(hMQTTstate);   // Task zur Überwachung hinzugefügt  
-    assert(er == ESP_OK); 
-  }
   Serial.println("MQTT-State-Task gestartet.");
   rc = xTaskCreatePinnedToCore(
     doorMotion,                //Taskroutine
@@ -1152,12 +1149,6 @@ void setup() {
     &hstateMaschine,           //handler
     app_cpu);                  //CPU_ID
   assert(rc == pdPASS);
-  er = esp_task_wdt_status(hstateMaschine);  // Check, ob der Task schon überwacht wird
-  assert(er == ESP_ERR_NOT_FOUND);
-  if (er == ESP_ERR_NOT_FOUND) {
-    er = esp_task_wdt_add(hstateMaschine);   // Task zur Überwachung hinzugefügt  
-    assert(er == ESP_OK); 
-  }
   Serial.println("stateMaschine-Task gestartet.");
   rc = xTaskCreatePinnedToCore(
     window,                    //Taskroutine

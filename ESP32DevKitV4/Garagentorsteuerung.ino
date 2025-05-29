@@ -253,6 +253,8 @@ void printStateMQTT() {
   mqttTopic += "JSON_0";
   mqttJson = "{\"lastError\":\"" + String(lastError) + "\"";
   mqttJson += ",\"WiFi_Signal_Strength\":\"" + String(WiFi.RSSI()) + "\"";
+  mqttJson += ",\"WiFi_IP_Adress\":\"" + WiFi.localIP().toString() + "\"";
+  mqttJson += ",\"WiFi_MAC_Adress\":\"" + WiFi.macAddress() + "\"";
   mqttJson += ",\"Torzustand_Prozent\":\"" + String(zustand) + " %" + "\"";
   mqttJson += ",\"Zustand\":\"";
   if (torAuf == 1) mqttJson += "Tor offen\"}";
@@ -289,6 +291,20 @@ void printStateMQTT() {
   mqttPayload = WiFi.RSSI();
   mqttClient.publish(mqttTopic.c_str(), mqttPayload.c_str());
   if (debug > 2) Serial.print("WiFi Signalstärke: ");
+  if (debug > 2) Serial.println(mqttPayload);
+  //WiFi IP-Adresse
+  mqttTopic = MQTT_SERIAL_PUBLISH_STATE;
+  mqttTopic += "WiFi_IP_Adress";
+  mqttPayload = WiFi.localIP().toString();
+  mqttClient.publish(mqttTopic.c_str(), mqttPayload.c_str());
+  if (debug > 2) Serial.print("WiFi IP-Adresse: ");
+  if (debug > 2) Serial.println(mqttPayload);
+  //WiFi MAC-Adresse
+  mqttTopic = MQTT_SERIAL_PUBLISH_STATE;
+  mqttTopic += "WiFi_MAC_Adress";
+  mqttPayload = WiFi.macAddress();
+  mqttClient.publish(mqttTopic.c_str(), mqttPayload.c_str());
+  if (debug > 2) Serial.print("WiFi MAC-Adresse: ");
   if (debug > 2) Serial.println(mqttPayload);
   //Tor Zustand in Prozent
   mqttTopic = MQTT_SERIAL_PUBLISH_STATE;

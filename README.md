@@ -12,6 +12,16 @@ An der Platine können 4 Reed-Kontakte angeschlossen werden (oberer und unterer 
 ### Software:
 Der ESP32 benötigt natürlich seine Software. Das C++-File liegt im entsprechenden Verzeichnis und muss bezüglich MQTT-Broker-Account und Adresse angepasst werden. Zusätzlich ist natürlich auch das WiFi-Passwort und die IP-Adresse zu setzen. Danach kann das File z.B. mit der Arduino-IDE auf den ESP32DevKitV4-Modul aufgespielt werden. Compile und Upload brauchen nur ein paar Sekunden. Nach dem Start des ESP32 versucht der ESP32 den MQTT-Broker zu erreichen und übermittelt zyklisch den Status. Das angehängte blockly-Skript für den ioBroker liest die Botschaften aus und steuert das Tor an. Hier sind die Funktionen TorZu(um 23Uhr)... verortet. Der gesendete Torzustand kann im ioBroker zur Visualisierung verwendet werden. Ich steure den Telegramadapter an, sollte z.B. das Tor um 23Uhr nicht zu schließen sein (weil z.B. mein Sohn das Fahrad voll in den Fahrweg des Tores gestellt hat...).
 
+### Abhängigkeiten:
+OneWire.h:_____________OneWire by Jim Studt, Tom Pollard, Robin James... v2.3.8 (über Arduino IDE)<br>
+DallasTemperature.h:___DallasTemperature by Miles Burton v4.0.3 (über Arduino IDE)<br>
+WiFi.h:________________Arduino IDE<br>
+WiFiClient.h:__________Arduino IDE<br>
+PubSubClient.h:________PubSubClient by Nick O'Leary v2.8 (über Arduino IDE)<br>
+LiquidCrystal_I2C.h:___LiquidCrystal_I2C by Frank de Brabander v1.1.4 (https://github.com/marcoschwartz/LiquidCrystal_I2C)<br>
+EmonLib.h:_____________EmonLib by OpenEnergyMonitor v1.1.0 (über Arduino IDE)<br>
+esp_task_wdt.h:________Espressif IDE<br>
+
 ### Benötigte Hardware:
 * Relais <a href="https://www.amazon.de/gp/product/B0B5816YJ7/ref=ppx_yo_dt_b_search_asin_image?ie=UTF8&th=1"> Amazon </a> oder <a href="https://www.az-delivery.de/products/relais-modul"> AZ Delivery </a>
 * ESP32 Dev Kit V4 <a href="https://www.azdelivery.de/products/esp-32-dev-kit-c-v4"> AZ Delivery </a>

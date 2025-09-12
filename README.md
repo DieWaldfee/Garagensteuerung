@@ -36,6 +36,11 @@ esp_task_wdt.h:________Espressif IDE<br>
 * MC1490P (debouncer) auf Sockel, wenn gewünscht <a href="https://www.ebay.de/itm/201551880799?_trkparms=amclksrc%3DITM%26aid%3D1110006%26algo%3DHOMESPLICE.SIM%26ao%3D1%26asc%3D257778%26meid%3Db537b25c7a0745c29ea2a72120fca1d0%26pid%3D101195%26rk%3D5%26rkt%3D6%26sd%3D191674185616%26itm%3D201551880799%26pmt%3D1%26noa%3D0%26pg%3D4429486%26algv%3DSimPLWebV1EmbeddedAuctionsCPCAuto%26brand%3DBrand&_trksid=p4429486.c101195.m1851&amdata=cksum%3A201551880799b537b25c7a0745c29ea2a72120fca1d0%7Cenc%3AAQAIAAABAKQWTaSuKxcpq1j5hG%252Bz9F%252B8zK5%252FOpV48i2l8raehpQfSfTJViiimjfvkWmDgf%252BDpe3yyQwlK3DiDnYY85z1SxQJboT7HuhUjq4JgvlcaxtWrksoQQD9wDjrKbegZu4xYn3PZViDDDYymbWuHYvibUP57v0yaiUMN0YTUgeor4tEO0YIhs7PQ6%252BlbaxxWmKa98vDVPkxH4swvs1LeiFRFmmZbEV7QLNVZZrDm%252FVKXslR3RU%252FaKtNAYSS467lqopMuORWt353Z%252F97IyDlsTditsZk7nQ5%252BrWSFDjYWzKfd28Sj%252BQeszMJWaCxAHMu4uSDmqWne6J1qTMShVB5vi5c19k%253D%7Campid%3APL_CLK%7Cclp%3A4429486"> eBay </a>
 * Kondensatoren <a href="https://www.amazon.de/AUKENIEN-Kondensator-Kondensatoren-Keramikkondensator-Kit/dp/B09NLZBC7R/ref=sr_1_1_sspa?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=HKCZID75QOX1&keywords=kondensator&qid=1703369261&sprefix=kondensator%2Caps%2C94&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1"> Amazon </a>
 
+**Haftungsausschluss**<br>
+Deutsch: Dieses Projekt arbeitet mit Netzspannung (220 V) und darf ausschließlich von qualifiziertem Fachpersonal aufgebaut, installiert und betrieben werden. Durch die anliegende Spannung besteht Lebensgefahr! Fehler in Schaltung oder Software können zu Sachschäden (z. B. an Gebäude oder Heizung) oder zu gefährlichen Situationen für Leib und Leben führen. Nutzung auf eigene Gefahr – jegliche Haftung wird ausgeschlossen.
+<br>
+English: This project operates with mains voltage (220 V) and must only be assembled, installed, and operated by qualified professionals. The present voltage poses a risk of fatal electric shock! Errors in circuitry or software may cause property damage (e.g., to buildings or heating systems) or create life-threatening situations. Use at your own risk – any liability is disclaimed.
+
 <br>(Bezugslinks füge ich später noch hinzu)
 
 

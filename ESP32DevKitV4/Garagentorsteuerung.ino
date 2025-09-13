@@ -4,7 +4,6 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <PubSubClient.h>
-#include <LiquidCrystal_I2C.h>
 #include <EmonLib.h>                   // Auswertung der SCT013-Sensoren
 #include <esp_task_wdt.h>
 #include "secrets.h"
@@ -52,8 +51,8 @@ static QueueHandle_t mqttQueue;           // Queuedefinition für die MQTT-Queue
 static TaskHandle_t hmqtt;                // handler für den MQTT-Sender-Task
 
 // Zeitsteuerung für Tor auf und Tor zu
-float timeTorAuf = 15.0;            // Gesamtzeit zum Öffnen des Garagentors [s]
-float timeTorZu = 20.0;             // Gesamtzeit zum Schließen des Garagentors [s]
+float timeTorAuf = 25.0;            // Gesamtzeit zum Öffnen des Garagentors [s]
+float timeTorZu = 21.0;             // Gesamtzeit zum Schließen des Garagentors [s]
 float timeHysterese = 1.0;          // Zeithysterese bei einer Auf-Auf-, Zu-Zu- oder schnellen Auf-Zu-Schaltung [s]
 int volatile zustand = 0;           // aktuell gewünschte Toröffnung [0 = zu; 100 = auf; x -> Prozent Toröffnung über]
 bool volatile positionZu = 0;       // Reed-Sensor 1 ist aktiv und Tor ist geschlossen
@@ -573,6 +572,8 @@ void checkMQTTconnetion() {
     //Vorbereitung errorcode MQTT (https://pubsubclient.knolleary.net/api#state)
     mqttTopic = MQTT_SERIAL_PUBLISH_BASIS + String("error");
     mqttPayload = String(String(++MQTTReconnect) + ". reconnect: ") + String("; MQTT disconnect rc=" + String(mqttClient.state()));
+    //reconnect
+    mqttConnect();
     // 0	MQTT_CONNECTED	        Erfolgreich verbunden.
     // 1	MQTT_CONNECTION_TIMEOUT	Verbindung zum Broker hat zu lange gedauert (Timeout).
     // 2	MQTT_CONNECTION_LOST	  Verbindung ging verloren (nach dem Connect).

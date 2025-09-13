@@ -4,7 +4,6 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <PubSubClient.h>
-#include <LiquidCrystal_I2C.h>
 #include <EmonLib.h>                   // Auswertung der SCT013-Sensoren
 #include <esp_task_wdt.h>
 #include "secrets.h"
@@ -573,6 +572,8 @@ void checkMQTTconnetion() {
     //Vorbereitung errorcode MQTT (https://pubsubclient.knolleary.net/api#state)
     mqttTopic = MQTT_SERIAL_PUBLISH_BASIS + String("error");
     mqttPayload = String(String(++MQTTReconnect) + ". reconnect: ") + String("; MQTT disconnect rc=" + String(mqttClient.state()));
+    //reconnect
+    mqttConnect();
     // 0	MQTT_CONNECTED	        Erfolgreich verbunden.
     // 1	MQTT_CONNECTION_TIMEOUT	Verbindung zum Broker hat zu lange gedauert (Timeout).
     // 2	MQTT_CONNECTION_LOST	  Verbindung ging verloren (nach dem Connect).

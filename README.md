@@ -18,9 +18,11 @@ DallasTemperature.h:___DallasTemperature by Miles Burton v4.0.3 (über Arduino I
 WiFi.h:________________Arduino IDE<br>
 WiFiClient.h:__________Arduino IDE<br>
 PubSubClient.h:________PubSubClient by Nick O'Leary v2.8 (über Arduino IDE)<br>
-LiquidCrystal_I2C.h:___LiquidCrystal_I2C by Frank de Brabander v1.1.4 (https://github.com/marcoschwartz/LiquidCrystal_I2C)<br>
-EmonLib.h:_____________EmonLib by OpenEnergyMonitor v1.1.0 (über Arduino IDE)<br>
 esp_task_wdt.h:________Espressif IDE<br>
+
+### Board ESP32
+esp32 by Espressif Systems v1.0.6 (über Arduino IDE)<br>
+Getestet habe ich auch v2.0.5 - die Steuerung wird auch bei neueren Versionen des ESP32-Boards funktionieren.<br>
 
 ### Benötigte Hardware:
 * Relais <a href="https://www.amazon.de/gp/product/B0B5816YJ7/ref=ppx_yo_dt_b_search_asin_image?ie=UTF8&th=1"> Amazon </a> oder <a href="https://www.az-delivery.de/products/relais-modul"> AZ Delivery </a>
